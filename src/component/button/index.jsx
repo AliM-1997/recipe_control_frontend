@@ -1,10 +1,13 @@
-import React, { Children } from "react";
-import "./style.css";
+import React from "react";
 
-export default function Button({ onClick, children }) {
+const Button = ({ label, color = "blue-bg", textcolor = "white-text" }) => {
   return (
-    <button onClick={onClick} className="btn">
-      {children}
-    </button>
+    <div>
+      <button className={` rounded full-width padding ${color} ${textcolor}`}>
+        {label}
+      </button>
+    </div>
   );
-}
+};
+
+export default Button;
