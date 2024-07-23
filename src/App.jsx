@@ -1,21 +1,30 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  Navigate,
+} from "react-router-dom";
 import Navbar from "./pages/NavBar/Navbar";
-import Home from "./pages/home/Home";
+import Home from "./pages/Home/index";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import "./styles/utilities.css";
 import "./styles/colors.css";
 import "./styles/index.css";
+import AppLayout from "./component/AppLayout";
 
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Navigate replace to="/login" />} />
+        <Route index path="login" element={<Login />} />
+        <Route path="/app" element={<AppLayout />}>
+          <Route index element={<Home />} />
+          <Route path="signup" element={<Signup />} />
+        </Route>
         <Route
           path="*"
           element={

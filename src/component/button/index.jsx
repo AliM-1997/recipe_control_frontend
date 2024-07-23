@@ -1,10 +1,18 @@
 import React from "react";
 
-const Button = ({ label, color = "blue-bg", textcolor = "white-text" }) => {
+const Button = ({
+  children,
+  color = "blue-bg",
+  textcolor = "white-text",
+  onMouseClick,
+}) => {
   return (
     <div>
-      <button className={` rounded full-width padding ${color} ${textcolor}`}>
-        {label}
+      <button
+        onClick={onMouseClick}
+        className={` rounded full-width padding clickable ${color} ${textcolor} `}
+      >
+        {children}
       </button>
     </div>
   );

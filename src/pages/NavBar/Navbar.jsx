@@ -8,10 +8,10 @@ const Navbar = () => {
       <h1>Logo</h1>
       <ul className="flex navbar-links space-between padding">
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/app">Home</Link>
         </li>
         <li>
-          <Link to="/signup">Signup</Link>
+          <Link to="signup">Signup</Link>
         </li>
         <li>
           <Link to="/login">Login</Link>
