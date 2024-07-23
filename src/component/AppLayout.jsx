@@ -6,9 +6,8 @@ export default function AppLayout() {
   return (
     <div>
       <Navbar />
-      <h1>Hello</h1>
+
       <Outlet />
-      <footer>footer</footer>
     </div>
   );
 }

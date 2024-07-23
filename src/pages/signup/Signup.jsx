@@ -8,7 +8,6 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
   const nagivate = useNavigate();
 
   const user_submit = async (e) => {
@@ -42,7 +41,7 @@ const Signup = () => {
   return (
     <div className=" flex column center page">
       <div className="flex column signbox white-bg rounded">
-        <h4>Signup</h4>
+        <h4 className="flex center">Signup</h4>
         <Input
           label="name"
           placeholder=" your name"

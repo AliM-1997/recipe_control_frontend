@@ -7,7 +7,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Navbar from "./pages/NavBar/Navbar";
-import Home from "./pages/Home/index";
+import Home from "./pages/Home/Home";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import "./styles/utilities.css";

@@ -39,7 +39,7 @@ const Login = () => {
       console.error(error);
     }
   };
-  const navigate_signin = () => navigate("/app/signin");
+  const navigate_signin = () => navigate("signin");
 
   return (
     <div className="flex column center page">
