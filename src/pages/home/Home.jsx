@@ -12,6 +12,7 @@ const Home = () => {
       console.log(res.data);
     };
     recipe_list();
+    const userId = localStorage.getItem("user_id");
   }, []);
 
   return (

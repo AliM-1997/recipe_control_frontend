@@ -14,6 +14,7 @@ import "./styles/utilities.css";
 import "./styles/colors.css";
 import "./styles/index.css";
 import AppLayout from "./component/AppLayout";
+import Create from "./pages/Create/create";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/app" element={<AppLayout />}>
           <Route index element={<Home />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="create" element={<Create />} />
         </Route>
         <Route
           path="*"
