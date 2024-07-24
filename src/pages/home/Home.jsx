@@ -3,16 +3,22 @@ import axios from "axios";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
+  const [newComment, setNewComment] = useState("");
+  const [selectedRecipeId, setSelectedRecipeId] = useState(null);
 
   useEffect(() => {
-    const recipe_list = async () => {
-      const res = await axios.get(
-        "http://localhost//recipes-control-backend/recipes/read-recipe.php"
-      );
-      setRecipes(res.data.recipes || []);
-      console.log(res.data);
+    const fetchRecipes = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost/recipes-control-backend/recipes/read-recipe.php"
+        );
+        setRecipes(res.data.recipes || []);
+        console.log(res.data);
+      } catch (err) {
+        console.error("There was an error fetching the recipes:", err);
+      }
     };
-    recipe_list();
+    fetchRecipes();
   }, []);
 
   const handleDelete = async (recipeName) => {
@@ -35,14 +41,34 @@ const Home = () => {
     }
   };
 
+  const handleCommentChange = (e) => {
+    setNewComment(e.target.value);
+  };
+
+  const handleCommentSubmit = async (recipeId) => {
+    try {
+      await axios.post(
+        "http://localhost/recipes-control-backend/comments/add-comment.php",
+        {
+          recipe_id: recipeId,
+          content: newComment,
+        }
+      );
+      setNewComment("");
+      setSelectedRecipeId(null);
+    } catch (err) {
+      console.error("There was an error adding the comment:", err);
+    }
+  };
+
   return (
     <div className="page">
       <h1 className="flex center">All Recipes</h1>
       <div className="full-width flex space-between padding primary-bg">
-        <h4>recipe name</h4>
-        <h4>recipe description</h4>
-        <h4>recipe ingredients</h4>
-        <h4>actions</h4>
+        <h4>Recipe Name</h4>
+        <h4>Recipe Description</h4>
+        <h4>Recipe Ingredients</h4>
+        <h4>Actions</h4>
       </div>
       <div className="full-width">
         <ul>
@@ -58,6 +84,21 @@ const Home = () => {
                 <button onClick={() => handleDelete(recipe.name)}>
                   Delete
                 </button>
+                <button onClick={() => setSelectedRecipeId(recipe.id)}>
+                  Comment
+                </button>
+                {selectedRecipeId === recipe.id && (
+                  <div className="comment-section">
+                    <textarea
+                      value={newComment}
+                      onChange={handleCommentChange}
+                      placeholder="Add a comment"
+                    />
+                    <button onClick={() => handleCommentSubmit(recipe.id)}>
+                      Submit Comment
+                    </button>
+                  </div>
+                )}
               </li>
             ))
           ) : (
